@@ -1,6 +1,8 @@
 package jogador;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.testegdx.Egion;
@@ -11,41 +13,48 @@ import controles.Teclado;
 public class Jogador extends Sprite {
 
     private float speed = 420,
-                  x = Egion.SCREEN_WIDTH / 2,
-                  y = Egion.SCREEN_HEIGHT / 2;
+                  x = 0,
+                  y = 0;
+
+    public Controle controle;
 
     public Jogador(Texture tex) {
         super(tex);
         setSize(16, 16);
-        setCenterX(x);
-        setCenterY(y);
+        setCenterX(Egion.SCREEN_WIDTH / 2);
+        setCenterY(Egion.SCREEN_HEIGHT / 2);
+        controle = new Teclado(Input.Keys.UP, Input.Keys.DOWN, Input.Keys.LEFT, Input.Keys.RIGHT);
     }
 
-    public void move(Teclado tecla) {
-        if (tecla.esqCima()) {
+    public void move() {
+        if (controle.esqCima()) {
             x -= (int) (getSpeed() * Math.sqrt(2) / 2);
             y += (int) (getSpeed() * Math.sqrt(2) / 2);
-        } else if (tecla.esqBaixo()) {
+        } else if (controle.esqBaixo()) {
             x -= (int) (getSpeed() * Math.sqrt(2) / 2);
             y -= (int) (getSpeed() * Math.sqrt(2) / 2);
-        } else if (tecla.dirBaixo()) {
+        } else if (controle.dirBaixo()) {
             x += (int) (getSpeed() * Math.sqrt(2) / 2);
             y -= (int) (getSpeed() * Math.sqrt(2) / 2);
-        } else if (tecla.dirCima()) {
+        } else if (controle.dirCima()) {
             x += (int) (getSpeed() * Math.sqrt(2) / 2);
             y += (int) (getSpeed() * Math.sqrt(2) / 2);
-        } else if (tecla.segCima()) {
+        } else if (controle.segCima()) {
             y += getSpeed();
-        } else if (tecla.segBaixo()) {
+        } else if (controle.segBaixo()) {
             y -= getSpeed();
-        } else if (tecla.segEsquerda()) {
+        } else if (controle.segEsquerda()) {
             x -= getSpeed();
-        } else if (tecla.segDireita()) {
+        } else if (controle.segDireita()) {
             x += getSpeed();
         }
     }
 
-    public void draw(SpriteBatch batch) {
+
+    public void desenha(Batch batch) {
+        System.out.println(x);
+        setX(x);
+        setY(y);
         super.draw(batch);
     }
 
