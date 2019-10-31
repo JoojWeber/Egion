@@ -6,63 +6,54 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Botao {
-    private Sprite cur_img; //imagem em uso (current image)
-    private Sprite[] imgs;
-    public boolean marcado;
+    private Sprite imagemInativa, imagemAtiva;
 
-    public Botao(float pos_x, float pos_y, float width, float height, Texture img) {
-        marcado = false;
-        cur_img = new com.badlogic.gdx.graphics.g2d.Sprite(img);
-        cur_img.setX(pos_x);
-        cur_img.setY(pos_y);
-        cur_img.setSize(width, height);
-        imgs = new Sprite[] {cur_img,cur_img,cur_img};//no caso do botao nao posuir variacoes
+    public Sprite getImagemInativa() {
+        return imagemInativa;
     }
 
-    public Botao(float pos_x, float pos_y, float width, float height, Texture img0, Texture img1, Texture img2) {
-        marcado = false;
-        imgs = new Sprite[3];
-        int i = 0;
-        for (Texture img : new Texture[] {img0, img1, img2}) {
-            imgs[i] = new com.badlogic.gdx.graphics.g2d.Sprite(img);
-            imgs[i].setX(pos_x);
-            imgs[i].setY(pos_y);
-            imgs[i].setSize(width, height);
-            i++;
-        }
-        cur_img = imgs[0];
+    public void setImagemInativa(Sprite imagemInativa) {
+        this.imagemInativa = imagemInativa;
     }
 
-    public void draw(SpriteBatch batch) {
-        cur_img = marcado?imgs[1]:imgs[0];
-        cur_img.draw(batch);
+    public Sprite getImagemAtiva() {
+        return imagemAtiva;
     }
 
-    public boolean mouseEmCima() {
-        if (cur_img.getX() < Gdx.input.getX() &&
-                cur_img.getX() + cur_img.getWidth() > Gdx.input.getX() &&
-                cur_img.getY() + cur_img.getHeight() > Gdx.graphics.getHeight() - Gdx.input.getY() &&
-                Gdx.graphics.getHeight() - Gdx.input.getY() > cur_img.getY()){
+    public void setImagemAtiva(Sprite imagemAtiva) {
+        this.imagemAtiva = imagemAtiva;
+    }
+
+    public Botao(float pos_x, float pos_y, float width, float height, Texture imgIn, Texture imgAt) {
+        setImagemInativa(new com.badlogic.gdx.graphics.g2d.Sprite(imgIn));
+        setImagemAtiva(new com.badlogic.gdx.graphics.g2d.Sprite(imgAt));
+        getImagemInativa().setX(pos_x);
+        getImagemAtiva().setX(pos_x);
+        getImagemInativa().setY(pos_y);
+        getImagemAtiva().setY(pos_y);
+        getImagemInativa().setSize(width, height);
+        getImagemAtiva().setSize(width, height);
+    }
+
+    public void desenhaBotao(SpriteBatch batch) {
+        getImagemInativa().draw(batch);
+    }
+
+    public boolean verificaMouse(SpriteBatch batch) {
+        if (getImagemInativa().getX() < Gdx.input.getX() && getImagemInativa().getX() + getImagemInativa().getWidth() > Gdx.input.getX() && getImagemInativa().getY() + getImagemInativa().getHeight() > Gdx.graphics.getHeight() - Gdx.input.getY() && Gdx.graphics.getHeight() - Gdx.input.getY() > getImagemInativa().getY()) {
+            getImagemAtiva().draw(batch);
             return true;
         }
         return false;
     }
 
-    public boolean clicou() {
-        if (mouseEmCima() && Gdx.input.isTouched()) {
-            cur_img = imgs[2];
+    public boolean verificaClick(SpriteBatch batch) {
+        if (Gdx.input.isTouched()) {
             return true;
         }
         return false;
     }
 
-    public Sprite getCur_img() {
-        return cur_img;
-    }
-
-    public void setCur_img(Sprite cur_img) {
-        this.cur_img = cur_img;
-    }
 
     public float getX() {
         return cur_img.getX();
