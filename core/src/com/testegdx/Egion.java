@@ -7,7 +7,7 @@ import tela.TelaJogo;
 public class Egion extends Game {
 
 	public SpriteBatch batch;
-	public static final int SCREEN_WIDTH = 688,SCREEN_HEIGHT = 688;
+	public static final int SCREEN_WIDTH = 680,SCREEN_HEIGHT = 680;
 
 	@Override
 	public void create() {

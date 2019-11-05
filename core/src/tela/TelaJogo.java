@@ -48,7 +48,7 @@ public class TelaJogo implements Screen {
 
     public TelaJogo(Egion jogo) {
         this.jogo = jogo;
-        jogador = new Jogador(new Texture("botoes_img/botao.jpg"));
+        jogador = new Jogador(new Texture("personagens/arqueiro.jpg"));
 
 
     }
@@ -68,7 +68,7 @@ public class TelaJogo implements Screen {
 
         jogador.move();
 
-        cam.position.set(jogador.getX(),jogador.getY(),0);
+        cam.position.set(jogador.getPos_x(),jogador.getPos_y(),0);
         cam.update();
         renderer.render();
         renderer.setView(cam);

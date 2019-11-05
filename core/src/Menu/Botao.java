@@ -55,7 +55,7 @@ public class Botao {
     }
 
 
-    public float getX() {
+    /*public float getX() {
         return cur_img.getX();
     }
 
@@ -75,5 +75,5 @@ public class Botao {
         for (int i = 0; i < 3; i++) {
             imgs[i].setY(y);
         }
-    }
+    }*/
 }

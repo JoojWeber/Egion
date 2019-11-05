@@ -12,49 +12,50 @@ import controles.Teclado;
 
 public class Jogador extends Sprite {
 
-    private float speed = 420,
-                  x = 0,
-                  y = 0;
+    private float speed = 210,
+                  pos_x = 0,
+                  pos_y = 0,
+                  largura = 16,
+                  altura = 33;
 
     public Controle controle;
 
     public Jogador(Texture tex) {
         super(tex);
-        setSize(16, 16);
-        setCenterX(Egion.SCREEN_WIDTH / 2);
-        setCenterY(Egion.SCREEN_HEIGHT / 2);
+        setSize(largura, altura);
+        setCenterX((int) largura / 2);
+        setCenterY((int) altura / 2);
         controle = new Teclado(Input.Keys.UP, Input.Keys.DOWN, Input.Keys.LEFT, Input.Keys.RIGHT);
     }
 
     public void move() {
         if (controle.esqCima()) {
-            x -= (int) (getSpeed() * Math.sqrt(2) / 2);
-            y += (int) (getSpeed() * Math.sqrt(2) / 2);
+            pos_x -= (int) (getSpeed() * Math.sqrt(2) / 2);
+            pos_y += (int) (getSpeed() * Math.sqrt(2) / 2);
         } else if (controle.esqBaixo()) {
-            x -= (int) (getSpeed() * Math.sqrt(2) / 2);
-            y -= (int) (getSpeed() * Math.sqrt(2) / 2);
+            pos_x -= (int) (getSpeed() * Math.sqrt(2) / 2);
+            pos_y -= (int) (getSpeed() * Math.sqrt(2) / 2);
         } else if (controle.dirBaixo()) {
-            x += (int) (getSpeed() * Math.sqrt(2) / 2);
-            y -= (int) (getSpeed() * Math.sqrt(2) / 2);
+            pos_x += (int) (getSpeed() * Math.sqrt(2) / 2);
+            pos_y -= (int) (getSpeed() * Math.sqrt(2) / 2);
         } else if (controle.dirCima()) {
-            x += (int) (getSpeed() * Math.sqrt(2) / 2);
-            y += (int) (getSpeed() * Math.sqrt(2) / 2);
+            pos_x += (int) (getSpeed() * Math.sqrt(2) / 2);
+            pos_y += (int) (getSpeed() * Math.sqrt(2) / 2);
         } else if (controle.segCima()) {
-            y += getSpeed();
+            pos_y += getSpeed();
         } else if (controle.segBaixo()) {
-            y -= getSpeed();
+            pos_y -= getSpeed();
         } else if (controle.segEsquerda()) {
-            x -= getSpeed();
+            pos_x -= getSpeed();
         } else if (controle.segDireita()) {
-            x += getSpeed();
+            pos_x += getSpeed();
         }
     }
 
 
     public void desenha(Batch batch) {
-        System.out.println(x);
-        setX(x);
-        setY(y);
+        super.setX(pos_x + (int) largura / 2);
+        super.setY(pos_y + (int) altura / 2);
         super.draw(batch);
     }
 
@@ -66,23 +67,19 @@ public class Jogador extends Sprite {
         this.speed = speed;
     }
 
-    @Override
-    public float getX() {
-        return x;
+    public float getPos_x() {
+        return pos_x;
     }
 
-    @Override
-    public void setX(float x) {
-        this.x = x;
+    public void setPos_x(float x) {
+        this.pos_x = x;
     }
 
-    @Override
-    public float getY() {
-        return y;
+    public float getPos_y() {
+        return pos_y;
     }
 
-    @Override
-    public void setY(float y) {
-        this.y = y;
+    public void setPos_y(float y) {
+        this.pos_y = y;
     }
 }
