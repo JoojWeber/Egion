@@ -12,9 +12,11 @@ import controles.Teclado;
 
 public class Jogador extends Sprite {
 
+    public final double raiz = Math.sqrt(2) / 2;
+
     private float speed = 262,
-                  pos_x = 0,
-                  pos_y = 0,
+                  pos_x = 340,
+                  pos_y = 340,
                   largura = 16,
                   altura = 33;
 
@@ -29,20 +31,19 @@ public class Jogador extends Sprite {
     }
 
     public void move() {
-        float s = getSpeed();
-
+        double s = getSpeed();
         if (controle.esqCima()) {
-            pos_x -= (int) (s * Math.sqrt(2) / 2);
-            pos_y += (int) (s * Math.sqrt(2) / 2);
+            pos_x -= (int) (s * raiz);
+            pos_y += (int) (s * raiz);
         } else if (controle.esqBaixo()) {
-            pos_x -= (int) (s * Math.sqrt(2) / 2);
-            pos_y -= (int) (s * Math.sqrt(2) / 2);
+            pos_x -= (int) (s * raiz);
+            pos_y -= (int) (s * raiz);
         } else if (controle.dirBaixo()) {
-            pos_x += (int) (s * Math.sqrt(2) / 2);
-            pos_y -= (int) (s * Math.sqrt(2) / 2);
+            pos_x += (int) (s * raiz);
+            pos_y -= (int) (s * raiz);
         } else if (controle.dirCima()) {
-            pos_x += (int) (s * Math.sqrt(2) / 2);
-            pos_y += (int) (s * Math.sqrt(2) / 2);
+            pos_x += (int) (s * raiz);
+            pos_y += (int) (s * raiz);
         } else if (controle.segCima()) {
             pos_y += s;
         } else if (controle.segBaixo()) {
