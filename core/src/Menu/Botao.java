@@ -53,27 +53,4 @@ public class Botao {
         }
         return false;
     }
-
-
-    /*public float getX() {
-        return cur_img.getX();
-    }
-
-    public void setX(float x) {
-        cur_img.setX(x);
-        for (int i = 0; i < 3; i++) {
-            imgs[i].setX(x);
-        }
-    }
-
-    public float getY() {
-        return cur_img.getY();
-    }
-
-    public void setY(float y) {
-        cur_img.setX(y);
-        for (int i = 0; i < 3; i++) {
-            imgs[i].setY(y);
-        }
-    }*/
 }
