@@ -12,7 +12,7 @@ import controles.Teclado;
 
 public class Jogador extends Sprite {
 
-    private float speed = 210,
+    private float speed = 262,
                   pos_x = 0,
                   pos_y = 0,
                   largura = 16,
@@ -25,30 +25,32 @@ public class Jogador extends Sprite {
         setSize(largura, altura);
         setCenterX((int) largura / 2);
         setCenterY((int) altura / 2);
-        controle = new Teclado(Input.Keys.UP, Input.Keys.DOWN, Input.Keys.LEFT, Input.Keys.RIGHT);
+        controle = new Teclado(Input.Keys.W, Input.Keys.S, Input.Keys.A, Input.Keys.D);
     }
 
     public void move() {
+        float s = getSpeed();
+
         if (controle.esqCima()) {
-            pos_x -= (int) (getSpeed() * Math.sqrt(2) / 2);
-            pos_y += (int) (getSpeed() * Math.sqrt(2) / 2);
+            pos_x -= (int) (s * Math.sqrt(2) / 2);
+            pos_y += (int) (s * Math.sqrt(2) / 2);
         } else if (controle.esqBaixo()) {
-            pos_x -= (int) (getSpeed() * Math.sqrt(2) / 2);
-            pos_y -= (int) (getSpeed() * Math.sqrt(2) / 2);
+            pos_x -= (int) (s * Math.sqrt(2) / 2);
+            pos_y -= (int) (s * Math.sqrt(2) / 2);
         } else if (controle.dirBaixo()) {
-            pos_x += (int) (getSpeed() * Math.sqrt(2) / 2);
-            pos_y -= (int) (getSpeed() * Math.sqrt(2) / 2);
+            pos_x += (int) (s * Math.sqrt(2) / 2);
+            pos_y -= (int) (s * Math.sqrt(2) / 2);
         } else if (controle.dirCima()) {
-            pos_x += (int) (getSpeed() * Math.sqrt(2) / 2);
-            pos_y += (int) (getSpeed() * Math.sqrt(2) / 2);
+            pos_x += (int) (s * Math.sqrt(2) / 2);
+            pos_y += (int) (s * Math.sqrt(2) / 2);
         } else if (controle.segCima()) {
-            pos_y += getSpeed();
+            pos_y += s;
         } else if (controle.segBaixo()) {
-            pos_y -= getSpeed();
+            pos_y -= s;
         } else if (controle.segEsquerda()) {
-            pos_x -= getSpeed();
+            pos_x -= s;
         } else if (controle.segDireita()) {
-            pos_x += getSpeed();
+            pos_x += s;
         }
     }
 
