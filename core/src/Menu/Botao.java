@@ -48,9 +48,10 @@ public class Botao {
     }
 
     public boolean verificaClick(SpriteBatch batch) {
-        if (Gdx.input.isTouched()) {
+        if (Gdx.input.isTouched() && verificaMouse(batch)) {
             return true;
         }
         return false;
     }
+
 }

@@ -49,8 +49,6 @@ public class TelaJogo implements Screen {
     public TelaJogo(Egion jogo) {
         this.jogo = jogo;
         jogador = new Jogador(new Texture("personagens/arqueiro.jpg"));
-
-
     }
 
     @Override
