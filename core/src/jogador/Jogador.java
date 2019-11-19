@@ -12,7 +12,7 @@ import controles.Teclado;
 
 public class Jogador extends Sprite {
 
-    public final double raiz = Math.sqrt(2) / 2;
+    public final double raiz = Math.sqrt(2) / 2 + 0.2;
 
     private float speed = 262,
                   pos_x = 340,

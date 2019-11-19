@@ -1,6 +1,7 @@
 package tela;
 
 import Menu.Botao;
+import Menu.Hud;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -43,6 +44,7 @@ public class TelaJogo implements Screen {
     private TiledMap mapa;
     private OrthogonalTiledMapRenderer renderer;
     private OrthographicCamera cam;
+    private Hud hud;
 
     private Egion jogo;
 
@@ -55,8 +57,8 @@ public class TelaJogo implements Screen {
     public void show() {
         mapa = new TmxMapLoader().load("mapas/mapaTeste.tmx");
         renderer = new OrthogonalTiledMapRenderer(mapa);
-
         cam = new OrthographicCamera();
+        hud = new Hud(100);
     }
 
     @Override
