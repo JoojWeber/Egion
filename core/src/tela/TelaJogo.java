@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -44,13 +45,14 @@ public class TelaJogo implements Screen {
     private TiledMap mapa;
     private OrthogonalTiledMapRenderer renderer;
     private OrthographicCamera cam;
-    private Hud hud;
+    private Sprite hud;
 
     private Egion jogo;
 
     public TelaJogo(Egion jogo) {
         this.jogo = jogo;
         jogador = new Jogador(new Texture("personagens/arqueiro.jpg"));
+        hud = new Sprite(new Texture("botoes_img/barraHp.png"));
     }
 
     @Override
@@ -58,7 +60,6 @@ public class TelaJogo implements Screen {
         mapa = new TmxMapLoader().load("mapas/mapaTeste.tmx");
         renderer = new OrthogonalTiledMapRenderer(mapa);
         cam = new OrthographicCamera();
-        hud = new Hud(100);
     }
 
     @Override
@@ -74,6 +75,9 @@ public class TelaJogo implements Screen {
         renderer.setView(cam);
 
         renderer.getBatch().begin();
+        hud.setSize(300, 25);
+        hud.setPosition(25, 640);
+        hud.draw(renderer.getBatch());
         jogador.desenha(renderer.getBatch());
         renderer.getBatch().end();
     }

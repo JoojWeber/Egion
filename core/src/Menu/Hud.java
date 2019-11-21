@@ -2,7 +2,6 @@ package Menu;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.testegdx.Egion;
 
 public class Hud {
@@ -19,8 +18,7 @@ public class Hud {
         this.game = game;
         hp = vida;
         barraHp = new Sprite(new Texture("botoes_img/barraHp.png"));
-        barraHp.setSize(300, 50);
-        barraHp.setPosition(600, 50);
+
     }
 
     public void desenhaBarraVida() {
