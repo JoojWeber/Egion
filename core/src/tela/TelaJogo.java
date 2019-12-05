@@ -45,19 +45,17 @@ public class TelaJogo implements Screen {
     private TiledMap mapa;
     private OrthogonalTiledMapRenderer renderer;
     private OrthographicCamera cam;
-    private Sprite hud;
 
     private Egion jogo;
 
     public TelaJogo(Egion jogo) {
         this.jogo = jogo;
         jogador = new Jogador(new Texture("personagens/arqueiro.jpg"));
-        hud = new Sprite(new Texture("botoes_img/barraHp.png"));
     }
 
     @Override
     public void show() {
-        mapa = new TmxMapLoader().load("mapas/mapaTeste.tmx");
+        mapa = new TmxMapLoader().load("mapas/Mapa0/mapaTeste.tmx");
         renderer = new OrthogonalTiledMapRenderer(mapa);
         cam = new OrthographicCamera();
     }
@@ -75,9 +73,6 @@ public class TelaJogo implements Screen {
         renderer.setView(cam);
 
         renderer.getBatch().begin();
-        hud.setSize(300, 25);
-        hud.setPosition(25, 640);
-        hud.draw(renderer.getBatch());
         jogador.desenha(renderer.getBatch());
         renderer.getBatch().end();
     }

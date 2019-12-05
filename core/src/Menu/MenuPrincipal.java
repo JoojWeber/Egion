@@ -2,6 +2,7 @@ package Menu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -15,7 +16,7 @@ public class MenuPrincipal implements Screen {
     private Botao opcoes;
     private Botao sair;
     private Sprite paredeFundo, muralFundo, logo, calice, calice2;
-    private Sound musica;
+    private Music musica;
 
     public MenuPrincipal(Egion game) {
         this.game = game;
@@ -24,7 +25,7 @@ public class MenuPrincipal implements Screen {
         jogar = new Botao(100, 330, 200, 70, new Texture("botoes_img/jogarInativo.png"), new Texture("botoes_img/jogarAtivo.png"));
         opcoes = new Botao(100, 245, 200, 70, new Texture("botoes_img/opcoes.png"), new Texture("botoes_img/opcoesAtivo.png"));
         sair = new Botao(100, 160, 200, 70, new Texture("botoes_img/sair.png"), new Texture("botoes_img/sairAtivo.png"));
-        logo = new Sprite(new Texture("botoes_img/jogarInativo.png"));
+        logo = new Sprite(new Texture("botoes_img/logo.png"));
         calice = new Sprite(new Texture("botoes_img/folha.png"));
         calice2 = new Sprite(new Texture("botoes_img/calice2.png"));
 
@@ -39,7 +40,8 @@ public class MenuPrincipal implements Screen {
         calice2.setCenter(500, 255);
         calice2.setSize(300, 180);
 
-        musica = Gdx.audio.newSound(Gdx.files.internal("musica.mp3"));
+        musica = Gdx.audio.newMusic(Gdx.files.internal("musica.mp3"));
+        musica.setLooping(true);
         musica.play();
     }
 
